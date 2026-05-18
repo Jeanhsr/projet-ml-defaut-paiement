@@ -1,0 +1,23 @@
+Prediction de defaut de paiement bancaire
+
+Saisir les informations du client puis cliquer sur Predire.
+
+Voir les graphiques d'analyse
+
+{% for col in features %}
+{{ libelles[col] }}
+
+
+{% endfor %}  Predire
+{% if resultat is not none %}
+Resultat
+
+Probabilite de defaut : {{ proba }}
+
+{% if resultat == 1 %}
+Risque de defaut de paiement
+
+{% else %}
+Pas de risque de defaut
+
+{% endif %} {% endif %}
