@@ -1,23 +1,34 @@
-Prediction de defaut de paiement bancaire
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction de defaut de paiement</title>
+</head>
+<body>
+    <h1>Prediction de defaut de paiement bancaire</h1>
+    <p>Saisir les informations du client puis cliquer sur Predire.</p>
+    <p><a href="{{ url_for('graphiques') }}">Voir les graphiques d'analyse</a></p>
 
-Saisir les informations du client puis cliquer sur Predire.
+    <form method="POST">
+        {% for col in features %}
+            <p>
+                <label for="{{ col }}">{{ libelles[col] }}</label><br>
+                <input type="number" step="any" name="{{ col }}" id="{{ col }}"
+                       value="{{ valeurs[col] }}" required>
+            </p>
+        {% endfor %}
+        <button type="submit">Predire</button>
+    </form>
 
-Voir les graphiques d'analyse
-
-{% for col in features %}
-{{ libelles[col] }}
-
-
-{% endfor %}  Predire
-{% if resultat is not none %}
-Resultat
-
-Probabilite de defaut : {{ proba }}
-
-{% if resultat == 1 %}
-Risque de defaut de paiement
-
-{% else %}
-Pas de risque de defaut
-
-{% endif %} {% endif %}
+    {% if resultat is not none %}
+        <hr>
+        <h2>Resultat</h2>
+        <p>Probabilite de defaut : {{ proba }}</p>
+        {% if resultat == 1 %}
+            <p style="color: red;"><strong>Risque de defaut de paiement</strong></p>
+        {% else %}
+            <p style="color: green;"><strong>Pas de risque de defaut</strong></p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
