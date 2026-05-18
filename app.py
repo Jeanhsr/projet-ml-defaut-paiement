@@ -9,7 +9,7 @@ from flask import Flask, render_template, request
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_PATH = os.path.join(BASE_DIR, 'data', 'cs-training.csv')
+DATA_PATH = os.path.join(BASE_DIR, 'cs-training.csv')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 os.makedirs(STATIC_DIR, exist_ok=True)
 
